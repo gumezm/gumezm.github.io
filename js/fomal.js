@@ -2783,8 +2783,8 @@ class Cursor {
 /* 页脚计时器 start */
 var now = new Date();
 function createtime() {
-  // // 当前时间
-  // now.setTime(now.getTime() + 1000);
+  // 当前时间
+  now.setTime(now.getTime() + 1000);
   // var start = new Date("05/14/2023 00:00:00"); // 旅行者1号开始计算的时间
   // var dis = Math.trunc(23400000000 + ((now - start) / 1000) * 17); // 距离=秒数*速度 记住转换毫秒
   // var unit = (dis / 149600000).toFixed(6);  // 天文单位
