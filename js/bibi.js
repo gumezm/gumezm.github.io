@@ -3,7 +3,7 @@ let total = 0
 let nowNum = 0
 let items = []
 let page = 1
-let Url = 'https://blog.gumezm.eu.org/api/getPosts?page=1' // 记住替换为你的API链接
+let Url = 'https://blog.gumezm.eu.org/api/getPosts?page=' // 修改api，记得带参数page
 
 
 window.addEventListener('DOMContentLoaded', () => {
