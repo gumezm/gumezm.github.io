@@ -20,7 +20,16 @@
   </url>
   
   <url>
-    <loc>https://blog.gumezm.eu.org/box/nav/index.html</loc>
+    <loc>https://blog.gumezm.eu.org/site/census/index.html</loc>
+    
+    <lastmod>2023-03-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.gumezm.eu.org/site/time/index.html</loc>
     
     <lastmod>2023-03-22</lastmod>
     
@@ -38,6 +47,15 @@
   </url>
   
   <url>
+    <loc>https://blog.gumezm.eu.org/box/nav/index.html</loc>
+    
+    <lastmod>2023-03-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.gumezm.eu.org/box/gallery/index.html</loc>
     
     <lastmod>2023-03-22</lastmod>
@@ -47,25 +65,7 @@
   </url>
   
   <url>
-    <loc>https://blog.gumezm.eu.org/site/census/index.html</loc>
-    
-    <lastmod>2023-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.gumezm.eu.org/social/link/index.html</loc>
-    
-    <lastmod>2023-03-22</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.gumezm.eu.org/site/time/index.html</loc>
     
     <lastmod>2023-03-22</lastmod>
     
