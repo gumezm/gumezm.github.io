@@ -88,6 +88,7 @@ input, select, textarea {
 
 	html {
 		box-sizing: border-box;
+		height: 100%;
 	}
 
 	*, *:before, *:after {
@@ -96,6 +97,8 @@ input, select, textarea {
 
 	body {
 		background: #1b1f22;
+		height: 100%;
+		overflow: hidden;
 	}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
@@ -1190,9 +1193,12 @@ input, select, textarea {
 		-ms-justify-content: space-between;
 		justify-content: space-between;
 		position: relative;
-		min-height: 100vh;
+		height: 100vh;
+		height: 100dvh;
+		min-height: 0;
 		width: 100%;
 		padding: 4rem 2rem;
+		overflow: hidden;
 		z-index: 3;
 	}
 
@@ -1228,6 +1234,8 @@ input, select, textarea {
 /* Header */
 
 	#header {
+		--gap: clamp(1rem, 5.5vh, 3.5rem);
+		--logo-size: clamp(5rem, 18vh, 9rem);
 		display: -moz-flex;
 		display: -webkit-flex;
 		display: -ms-flex;
@@ -1258,17 +1266,17 @@ input, select, textarea {
 			-ms-transition: opacity 0.325s ease-in-out;
 			transition: opacity 0.325s ease-in-out;
 			position: relative;
-			margin-top: 3.5rem;
+			margin-top: var(--gap);
 		}
 
 			#header > *:before {
 				content: '';
 				display: block;
 				position: absolute;
-				top: calc(-3.5rem - 1px);
+				top: calc(-1 * var(--gap) - 1px);
 				left: calc(50% - 1px);
 				width: 1px;
-				height: calc(3.5rem + 1px);
+				height: calc(var(--gap) + 1px);
 				background: #ffffff;
 			}
 
@@ -1281,9 +1289,9 @@ input, select, textarea {
 			}
 
 		#header .logo {
-			width: 7.5rem;
-			height: 7.5rem;
-			line-height: 7.5rem;
+			width: var(--logo-size);
+			height: var(--logo-size);
+			line-height: var(--logo-size);
 			border-radius: 100%;
 			overflow: hidden;
 		}
@@ -1317,7 +1325,7 @@ input, select, textarea {
 				-webkit-transition-delay: 0.25s;
 				-ms-transition-delay: 0.25s;
 				transition-delay: 0.25s;
-				padding: 3rem 2rem;
+				padding: clamp(1rem, 3.5vh, 3rem) 2rem;
 				max-height: 40rem;
 				overflow: hidden;
 			}
@@ -1428,19 +1436,9 @@ input, select, textarea {
 
 		@media screen and (max-width: 736px) {
 
-			#header > * {
-				margin-top: 2rem;
-			}
-
-				#header > *:before {
-					top: calc(-2rem - 1px);
-					height: calc(2rem + 1px);
-				}
-
-			#header .logo {
-				width: 6.5rem;
-				height: 6.5rem;
-				line-height: 6.5rem;
+			#header {
+				--gap: clamp(0.75rem, 4vh, 2rem);
+				--logo-size: clamp(4.5rem, 18vh, 7.5rem);
 			}
 
 				#header .logo .icon:before {
@@ -1448,7 +1446,7 @@ input, select, textarea {
 				}
 
 			#header .content .inner {
-				padding: 2.5rem 1rem;
+				padding: clamp(1rem, 3.5vh, 2.5rem) 1rem;
 			}
 
 			#header .content p {
@@ -1464,7 +1462,7 @@ input, select, textarea {
 			}
 
 				#header .content .inner {
-					padding: 2.5rem 0;
+					padding: clamp(1rem, 3.5vh, 2.5rem) 0;
 				}
 
 				#header nav ul {
@@ -1661,3 +1659,28 @@ input, select, textarea {
 		body.is-preload #footer {
 			opacity: 0;
 		}
+
+/* Short viewports (keeps the page locked, never scrolls) */
+
+	@media screen and (max-height: 620px) {
+
+		#wrapper {
+			padding-top: clamp(0.5rem, 3vh, 3rem);
+			padding-bottom: clamp(0.5rem, 3vh, 3rem);
+		}
+
+		#header {
+			--gap: clamp(0.6rem, 5vh, 2.5rem);
+			--logo-size: clamp(3.25rem, 14vh, 7rem);
+		}
+
+		#header .content .inner {
+			padding-top: clamp(0.6rem, 2.5vh, 1.5rem);
+			padding-bottom: clamp(0.6rem, 2.5vh, 1.5rem);
+		}
+
+		#header .content p {
+			line-height: 1.6;
+		}
+
+	}
