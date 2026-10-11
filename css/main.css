@@ -1,6 +1,32 @@
 @import url(fontawesome-all.min.css);
 @import url("css.css");
 
+/* Local fonts */
+
+	@font-face {
+		font-family: "Exo 2";
+		src: url("../font/Exo2-Medium.ttf") format("truetype");
+		font-weight: 500;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: "Jura";
+		src: url("../font/Jura-SemiBold.ttf") format("truetype");
+		font-weight: 600;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: "LXGW WenKai";
+		src: url("../font/LXGWWenKai-Medium.ttf") format("truetype");
+		font-weight: 500;
+		font-style: normal;
+		font-display: swap;
+	}
+
 /*
 	Dimension by HTML5 UP
 	html5up.net | @ajlkn
@@ -144,8 +170,8 @@ input, select, textarea {
 
 	body, input, select, textarea {
 		color: #ffffff;
-		font-family: "Source Sans Pro", sans-serif;
-		font-weight: 300;
+		font-family: "Jura", "LXGW WenKai", sans-serif;
+		font-weight: 500;
 		font-size: 1rem;
 		line-height: 1.65;
 	}
@@ -202,6 +228,8 @@ input, select, textarea {
 		}
 
 	h1 {
+		font-family: "Exo 2", "LXGW WenKai", sans-serif;
+		font-weight: 500;
 		font-size: 2.25rem;
 		line-height: 1.3;
 		letter-spacing: 0.5rem;
