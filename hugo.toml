@@ -1,0 +1,20 @@
+baseURL = 'https://example.org/'
+languageCode = 'zh-cn'
+title = 'Blog'
+theme = 'PaperMod'
+
+[params]
+  defaultTheme = 'auto'
+  ShowReadingTime = true
+
+[menu]
+  [[menu.main]]
+    identifier = 'archives'
+    name = '归档'
+    url = 'archives/'
+    weight = 10
+  [[menu.main]]
+    identifier = 'tags'
+    name = '标签'
+    url = 'tags/'
+    weight = 20
