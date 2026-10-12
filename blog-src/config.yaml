@@ -105,7 +105,7 @@ params:
   homeInfoParams:
     Title: "Gumezm"
     ImageUrl: /images/avatar.png
-    # Content: 这里写一句自我介绍或签名（留空则不显示）
+    Content: "Viva La Vida"
     # moreText: "查看更多"   # text of the "view more" link on the home page
     # moreLink: "posts/"     # target of the "view more" link
 
