@@ -64,10 +64,112 @@ git add themes/PaperMod
 git commit -m "chore: bump PaperMod"
 ```
 
-## 部署
+## 本仓库的构建与发布
 
-`.github/workflows/hugo.yml` 会在 push 到 `main` 时构建并发布到 GitHub Pages
-（需要在仓库 **Settings → Pages → Source** 选择 **GitHub Actions**）。
+本仓库是「落地页 + Hugo 博客」合体，目录分工：
+
+| 路径 | 作用 |
+| --- | --- |
+| `/`（`index.html`、`css/`、`js/`、`images/`、`font/`） | 落地页（HTML5 UP Dimension 模板），手写维护，**不由 Hugo 生成** |
+| `blog-src/` | Hugo 源码（即本 starter） |
+| `blog/` | Hugo 构建产物，**直接提交进 git** |
+
+发布方式与 starter 原版不同：这里**没有** `.github/workflows/hugo.yml`，
+用的是 GitHub Pages 的 **Deploy from a branch**（分支 `main`、目录 `/`），
+所以 `blog/` 的产物必须手动构建并提交，推上去 Pages 才会重新发布。
+
+### 构建
+
+```bash
+# 首次 clone 后
+git submodule update --init --recursive
+
+# 生产构建（baseURL 取 config.yaml 里的值）
+cd blog-src
+rm -rf ../blog          # Windows: Remove-Item -Recurse -Force ..\blog
+hugo --minify
+cd ..
+git add -A
+git commit -m "..."
+git push
+```
+
+> **每次构建前务必先删掉 `blog/`。** Hugo 只写不删，旧的内容哈希文件
+> （例如 `stylesheet.<旧hash>.css`）会残留在产物里被一起提交。
+
+### 本地预览
+
+产物里的链接是按 `config.yaml` 的 `baseURL`（`https://gumezm.github.io/blog/`）
+生成的绝对地址，所以直接用 `hugo server` 看到的和线上并不一致。
+要预览真实效果，用本地 baseURL 重建一次：
+
+```bash
+cd blog-src
+rm -rf ../blog
+hugo --minify --baseURL "http://127.0.0.1:8123/blog/"
+
+# 另开一个终端（在仓库根目录）
+python -m http.server 8123 --directory .
+# 浏览 http://127.0.0.1:8123/blog/
+```
+
+预览完**必须**用生产 baseURL 重新构建一次，否则会把本地地址提交上去。
+
+---
+
+## ⚠️ 换行符必须是 LF，否则整站会没有样式
+
+Hugo 的 `resources.Fingerprint` 对**磁盘上读到的字节**算 sha256，写进 HTML 的
+`integrity` 属性，同时把哈希当作文件名。而 git 提交时会把 CRLF 归一化成 LF。
+一旦工作区是 CRLF、仓库里是 LF：
+
+1. Hugo 按 CRLF 算哈希 → HTML 里的 `integrity` 和文件名都是 CRLF 版本；
+2. GitHub Pages 送出的却是 LF 版本；
+3. 浏览器重算哈希对不上，按 SRI 策略**拒绝加载整个样式表**；
+4. 页面变成没有任何样式的裸 HTML，控制台报
+   `Failed to find a valid digest in the 'integrity' attribute`。
+
+这个故障**本地预览看不出来**（本地只有一份字节，校验必然通过），只在线上现形。
+
+防御措施：
+
+- 仓库根目录的 `.gitattributes` 已声明 `* text=auto eol=lf`；
+- 但 submodule 是独立仓库，**享受不到根目录的 `.gitattributes`**，
+  所以每个 submodule 还要单独设置：
+
+```bash
+git config core.autocrlf false
+git -C blog-src/themes/PaperMod config core.autocrlf false
+git -C blog-src/themes/hugo-shortcode-gallery config core.autocrlf false
+```
+
+一劳永逸的办法（对所有仓库生效，并覆盖 Git for Windows 的系统级默认值 `true`）：
+
+```bash
+git config --global core.autocrlf false
+```
+
+改完设置需要重新检出工作区才生效：
+
+```bash
+git rm --cached -r -q .
+git reset --hard
+```
+
+**核对方法**——下面三处哈希必须完全一致：
+
+```bash
+# 1. 文件名里的哈希
+ls blog/assets/css/
+
+# 2. HTML 里 integrity 的哈希
+grep -o 'integrity="sha256-[^"]*"' blog/index.html
+
+# 3. 文件实际内容的哈希
+certutil -hashfile blog/assets/css/stylesheet.<hash>.css SHA256
+```
+
+如果线上又出现「整站没样式」，先打开浏览器控制台看有没有上面那条 integrity 报错。
 
 ## 许可与致谢
 
