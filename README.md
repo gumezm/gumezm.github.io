@@ -1,29 +1,35 @@
-# PaperMod Starter
+# gumezm.github.io
 
+个人站点仓库：根目录是落地页，`blog-src/` 是 Hugo 博客源码，`blog/` 是博客构建产物。
+
+博客部分基于 [her-cat/hugo-papermod-starter](https://github.com/her-cat/hugo-papermod-starter) ——
 一个基于 [Hugo PaperMod](https://github.com/adityatelange/hugo-PaperMod) 的开箱即用 Hugo 站点，
 把「主页头像 + 首页只列最新 3 篇 + 左文右图列表 + 分类/系列 meta + 列表封面缩略图 + 正文图片尺寸/懒加载」等改造
-直接内建好，克隆即可运行，不需要再手动改文件。
+直接内建好。
+
+> 下文凡出现 `layouts/`、`assets/`、`config.yaml` 等相对路径，均指 **`blog-src/` 目录下**。
+> 目录分工、构建命令与发布方式见后面「本仓库的构建与发布」一节。
 
 ## 环境要求
 
-- Hugo **extended ≥ 0.146.0**（推荐 0.148.1，与本站 CI 一致）
+- Hugo **extended ≥ 0.146.0**（本站使用 0.167.0）
 - git
 
 ## 快速开始
 
 ```bash
-git clone --recurse-submodules https://github.com/her-cat/hugo-papermod-starter my-blog
-cd my-blog
-hugo server
+git clone --recurse-submodules git@github.com:gumezm/gumezm.github.io.git
+cd gumezm.github.io
 ```
-
-打开 http://localhost:1313/ 即可看到效果。
 
 如果克隆时忘记加 `--recurse-submodules`：
 
 ```bash
 git submodule update --init --recursive
 ```
+
+> 不要直接把 `hugo server` 当成最终预览——产物里的链接是按 `config.yaml` 的 `baseURL`
+> 生成的绝对地址，和线上表现并不一致。本地预览的正确做法见后面的「本地预览」一节。
 
 ## 目录与改造清单
 
@@ -55,12 +61,15 @@ git submodule update --init --recursive
 
 ## 更新 PaperMod
 
+PaperMod 与 hugo-shortcode-gallery 都是 submodule，升级 = 在 submodule 里 checkout 新版本，
+再回到主仓库提交更新后的 gitlink：
+
 ```bash
-cd themes/PaperMod
+cd blog-src/themes/PaperMod
 git fetch
 git checkout <commit-or-tag>
-cd ../..
-git add themes/PaperMod
+cd ../../..
+git add blog-src/themes/PaperMod
 git commit -m "chore: bump PaperMod"
 ```
 
