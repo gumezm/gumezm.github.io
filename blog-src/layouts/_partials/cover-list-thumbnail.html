@@ -1,0 +1,19 @@
+{{- $cover := .cover }}
+{{- $loading := .loading }}
+{{- $alt := .alt }}
+
+{{- if eq $cover.MediaType.SubType "svg" }}
+{{/* SVG图像使用CSS控制显示效果 */}}
+<img loading="{{ $loading }}"
+     src="{{ $cover.Permalink }}"
+     class="svg-cover-image"
+     alt="{{ $alt }}">
+{{- else }}
+{{/* 光栅图像使用 Fill 方法裁剪 - 480x240 (2:1) */}}
+{{- $thumbnail := $cover.Fill "480x240 center" }}
+<img loading="{{ $loading }}"
+     src="{{ $thumbnail.Permalink }}"
+     width="{{ $thumbnail.Width }}"
+     height="{{ $thumbnail.Height }}"
+     alt="{{ $alt }}">
+{{- end }}

@@ -1,0 +1,23 @@
+{{- /* Parameterized head extensions. All are opt-in via params.extendHead.* */}}
+{{- $eh := site.Params.extendHead | default dict }}
+
+{{- with $eh.preconnect }}
+<link rel="preconnect" href="{{ . }}">
+<link rel="dns-prefetch" href="{{ . }}">
+{{- end }}
+
+{{- with $eh.umamiId }}
+{{- if hugo.IsProduction }}
+<link rel="preconnect" href="https://cloud.umami.is">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="{{ . }}"></script>
+{{- end }}
+{{- end }}
+
+{{- with $eh.preloadFont }}
+<link rel="preload" href="{{ . | relURL }}" as="font" type="font/woff2" crossorigin>
+{{- end }}
+
+{{- if and $eh.walineHost (.Param "comments") }}
+<link rel="dns-prefetch" href="{{ $eh.walineHost }}">
+<link rel="dns-prefetch" href="https://unpkg.com">
+{{- end }}

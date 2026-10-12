@@ -1,3 +1,6 @@
-[submodule "themes/PaperMod"]
-	path = themes/PaperMod
-	url = https://github.com/adityatelange/hugo-PaperMod.git
+[submodule "blog-src/themes/PaperMod"]
+	path = blog-src/themes/PaperMod
+	url = https://github.com/adityatelange/hugo-PaperMod
+[submodule "blog-src/themes/hugo-shortcode-gallery"]
+	path = blog-src/themes/hugo-shortcode-gallery
+	url = https://github.com/mfg92/hugo-shortcode-gallery

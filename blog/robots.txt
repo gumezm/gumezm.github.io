@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /tags/*/page/
+Sitemap: https://gumezm.github.io/blog/sitemap.xml

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>快速开始 on Blog</title>
+    <link>https://gumezm.github.io/blog/series/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B/</link>
+    <description>Recent content in 快速开始 on Blog</description>
+    <generator>Hugo</generator>
+    <language>zh</language>
+    <lastBuildDate>Sat, 08 Aug 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gumezm.github.io/blog/series/%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>左文右图列表布局</title>
+      <link>https://gumezm.github.io/blog/posts/2026/08/08/left-right-list/</link>
+      <pubDate>Sat, 08 Aug 2026 00:00:00 +0000</pubDate>
+      <guid>https://gumezm.github.io/blog/posts/2026/08/08/left-right-list/</guid>
+      <description>列表页文字在左、封面在右。</description>
+      <content:encoded><![CDATA[<p>列表页面通过 <code>entry-content-wrapper</code> 与 <code>entry-cover-wrapper</code> 实现左右布局，
+样式见 <code>assets/css/extended/blank.css</code>。</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>欢迎使用 PaperMod Starter</title>
+      <link>https://gumezm.github.io/blog/posts/2026/08/01/welcome/</link>
+      <pubDate>Sat, 01 Aug 2026 00:00:00 +0000</pubDate>
+      <guid>https://gumezm.github.io/blog/posts/2026/08/01/welcome/</guid>
+      <description>介绍这个起始站点包含哪些改造。</description>
+      <content:encoded><![CDATA[<p>这是起始站点的第一篇示例文章。</p>
+<h2 id="首页">首页</h2>
+<p>首页只展示最新的 3 篇文章，并且<strong>不会生成分页</strong>，底部通过「查看更多」跳转到文章列表。</p>
+<h2 id="文章列表">文章列表</h2>
+<p>文章列表采用<strong>左文右图</strong>布局，这是从原博客迁移过来的改造之一。</p>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

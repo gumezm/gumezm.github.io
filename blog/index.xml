@@ -5,7 +5,393 @@
     <link>https://gumezm.github.io/blog/</link>
     <description>Recent content on Blog</description>
     <generator>Hugo</generator>
-    <language>zh-cn</language>
+    <language>zh</language>
+    <lastBuildDate>Sat, 22 Aug 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://gumezm.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>图片画廊示例</title>
+      <link>https://gumezm.github.io/blog/posts/2026/08/22/gallery-demo/</link>
+      <pubDate>Sat, 22 Aug 2026 00:00:00 +0000</pubDate>
+      <guid>https://gumezm.github.io/blog/posts/2026/08/22/gallery-demo/</guid>
+      <description>使用 hugo-shortcode-gallery 展示图片画廊。</description>
+      <content:encoded><![CDATA[<p>站点启用了第二个主题 <code>hugo-shortcode-gallery</code>，可以在文章中这样使用：</p>
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+	
+		<script src="/blog/shortcode-gallery/jquery-3.7.1.min.js"></script>
+	
+
+	
+		<script src="/blog/shortcode-gallery/lazy/jquery.lazy.min.js"></script>
+	
+
+	<script src="/blog/shortcode-gallery/swipebox/js/jquery.swipebox.min.js"></script>
+	<link rel="stylesheet" href="/blog/shortcode-gallery/swipebox/css/swipebox.min.css">
+
+	<script src="/blog/shortcode-gallery/justified_gallery/jquery.justifiedGallery.min.js"></script>
+	<link rel="stylesheet" href="/blog/shortcode-gallery/justified_gallery/justifiedGallery.min.css"/>
+
+
+<style>
+	
+
+	
+</style>
+
+
+
+
+
+<div id="gallery-ad92bdf4f69b722be43ce6ed4c9d8b83-0-wrapper" class="gallery-wrapper">
+<div id="gallery-ad92bdf4f69b722be43ce6ed4c9d8b83-0" class="justified-gallery">
+	
+		
+
+			
+			
+
+			
+			
+				
+			
+
+			
+				
+			
+
+			
+			
+				
+					
+				
+			
+
+
+			
+			
+
+			<div>
+				
+				
+					
+					
+				
+
+				
+				
+					
+					
+				
+
+				<a href="/blog/posts/2026/08/22/gallery-demo/images/1.png"
+					class="galleryImg"
+					
+					>
+					<img
+						width="600" height="315"
+
+						
+							
+							style="filter: blur(25px);"
+							
+								src="data:image/jpeg;base64,/9j/2wCEAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4&#43;JS5ESUM8SDc9PjsBCgsLDg0OHBAQHDsoIig7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O//AABEIABEAIAMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5&#43;gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4&#43;Tl5ufo6ery8/T19vf4&#43;fr/2gAMAwEAAhEDEQA/AOs8/wB6PP8Aes/z/ejz/evB&#43;rn1fszQ8/3o8/3rP8/3o8/3o&#43;rh7Mq0UUV6BuFFFFAH/9k="
+							
+							class="lazy"
+							data-src="/blog/posts/2026/08/22/gallery-demo/images/1_hu_bc363475a3669c09.png"
+						
+
+						
+					>
+				</a>
+			</div>
+		
+	
+		
+
+			
+			
+
+			
+			
+				
+			
+
+			
+				
+			
+
+			
+			
+				
+					
+				
+			
+
+
+			
+			
+
+			<div>
+				
+				
+					
+					
+				
+
+				
+				
+					
+					
+				
+
+				<a href="/blog/posts/2026/08/22/gallery-demo/images/2.png"
+					class="galleryImg"
+					
+					>
+					<img
+						width="600" height="315"
+
+						
+							
+							style="filter: blur(25px);"
+							
+								src="data:image/jpeg;base64,/9j/2wCEAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4&#43;JS5ESUM8SDc9PjsBCgsLDg0OHBAQHDsoIig7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O//AABEIABEAIAMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5&#43;gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4&#43;Tl5ufo6ery8/T19vf4&#43;fr/2gAMAwEAAhEDEQA/ANf7T70fafesj7V70favevq&#43;Q&#43;d9ka/2n3o&#43;0&#43;9ZH2r3o&#43;1e9HIHsilRRRW51BRRRQB//9k="
+							
+							class="lazy"
+							data-src="/blog/posts/2026/08/22/gallery-demo/images/2_hu_c449c627b6a44d80.png"
+						
+
+						
+					>
+				</a>
+			</div>
+		
+	
+		
+
+			
+			
+
+			
+			
+				
+			
+
+			
+				
+			
+
+			
+			
+				
+					
+				
+			
+
+
+			
+			
+
+			<div>
+				
+				
+					
+					
+				
+
+				
+				
+					
+					
+				
+
+				<a href="/blog/posts/2026/08/22/gallery-demo/images/3.png"
+					class="galleryImg"
+					
+					>
+					<img
+						width="600" height="315"
+
+						
+							
+							style="filter: blur(25px);"
+							
+								src="data:image/jpeg;base64,/9j/2wCEAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4&#43;JS5ESUM8SDc9PjsBCgsLDg0OHBAQHDsoIig7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O//AABEIABEAIAMBIgACEQEDEQH/xAGiAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgsQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5&#43;gEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoLEQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2FxEyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2dri4&#43;Tl5ufo6ery8/T19vf4&#43;fr/2gAMAwEAAhEDEQA/AOr&#43;1e9H2r3rG&#43;1e9H2r3rk5D57nNn7V70favesb7V70favejkDnKNFFFamAUUUUAf/Z"
+							
+							class="lazy"
+							data-src="/blog/posts/2026/08/22/gallery-demo/images/3_hu_477d4551412610c0.png"
+						
+
+						
+					>
+				</a>
+			</div>
+		
+	
+</div>
+</div>
+
+<script>
+	if (!("HSCGjQuery" in window)) {
+		if (!window.jQuery) {
+			throw new Error("jQuery is not loaded, hugo-shortcode-gallery wont work without it!");
+		}
+		window.HSCGjQuery = window.jQuery.noConflict(true);
+	}
+
+	
+	
+	
+	
+	
+	;(function($) {
+
+		$( document ).ready(() => {
+			const gallery = $("#gallery-ad92bdf4f69b722be43ce6ed4c9d8b83-0");
+			
+
+			
+			let swipeboxInstance = null;
+
+			
+			
+			gallery.on('jg.complete', () => {
+				
+					
+					
+					$(() => {
+						$('.lazy').Lazy({
+							visibleOnly: true,
+							afterLoad: element => element.css({filter: "none", transition: "filter 1.0s ease-in-out"})
+						});
+					});
+				
+
+				swipeboxInstance = $('.galleryImg').swipebox(
+					$.extend({},
+						{  }
+					)
+				);
+			});
+
+			
+			gallery.justifiedGallery($.extend(
+				{
+					rowHeight : "150",
+					margins : "5",
+					border : 0,
+					randomize :  false ,
+					waitThumbnailsLoad : false,
+					lastRow : "justify",
+					captions : false,
+					
+					
+				},
+				{  }
+			));
+
+			
+			
+		});
+
+	
+	
+	
+	})(window.HSCGjQuery)
+</script>
+
+]]></content:encoded>
+    </item>
+    <item>
+      <title>封面与正文图片</title>
+      <link>https://gumezm.github.io/blog/posts/2026/08/15/cover-and-image/</link>
+      <pubDate>Sat, 15 Aug 2026 00:00:00 +0000</pubDate>
+      <guid>https://gumezm.github.io/blog/posts/2026/08/15/cover-and-image/</guid>
+      <description>封面缩略图与正文图片的尺寸/懒加载处理。</description>
+      <content:encoded><![CDATA[<p>列表页的封面会裁剪为 480×240 的缩略图；正文图片则会带上
+<code>width</code> / <code>height</code> / <code>loading</code> / <code>decoding</code> 属性，减少布局偏移。</p>
+<p><img alt="示例图片" decoding="async" height="630" loading="lazy" sizes="(max-width: 768px) 100vw, (max-width: 1024px) 768px, 1024px" src="/blog/posts/2026/08/15/cover-and-image/cover-3.png" srcset="/blog/posts/2026/08/15/cover-and-image/cover-3_hu_273e91e6d94ded10.png 384w, /blog/posts/2026/08/15/cover-and-image/cover-3_hu_238f8ea6898fe6d0.png 768w, /blog/posts/2026/08/15/cover-and-image/cover-3_hu_5da2e776625eafc4.png 1024w" style="max-width: 100%; height: auto; aspect-ratio: 1.9048;" width="1200"></p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>左文右图列表布局</title>
+      <link>https://gumezm.github.io/blog/posts/2026/08/08/left-right-list/</link>
+      <pubDate>Sat, 08 Aug 2026 00:00:00 +0000</pubDate>
+      <guid>https://gumezm.github.io/blog/posts/2026/08/08/left-right-list/</guid>
+      <description>列表页文字在左、封面在右。</description>
+      <content:encoded><![CDATA[<p>列表页面通过 <code>entry-content-wrapper</code> 与 <code>entry-cover-wrapper</code> 实现左右布局，
+样式见 <code>assets/css/extended/blank.css</code>。</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>欢迎使用 PaperMod Starter</title>
+      <link>https://gumezm.github.io/blog/posts/2026/08/01/welcome/</link>
+      <pubDate>Sat, 01 Aug 2026 00:00:00 +0000</pubDate>
+      <guid>https://gumezm.github.io/blog/posts/2026/08/01/welcome/</guid>
+      <description>介绍这个起始站点包含哪些改造。</description>
+      <content:encoded><![CDATA[<p>这是起始站点的第一篇示例文章。</p>
+<h2 id="首页">首页</h2>
+<p>首页只展示最新的 3 篇文章，并且<strong>不会生成分页</strong>，底部通过「查看更多」跳转到文章列表。</p>
+<h2 id="文章列表">文章列表</h2>
+<p>文章列表采用<strong>左文右图</strong>布局，这是从原博客迁移过来的改造之一。</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>关于</title>
+      <link>https://gumezm.github.io/blog/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://gumezm.github.io/blog/about/</guid>
+      <description>关于</description>
+      <content:encoded><![CDATA[<p>这是一个 <strong>PaperMod Starter</strong> 示例站点。</p>
+<p>你可以直接修改 <code>config.yaml</code> 和 <code>content/</code> 来开始自己的博客。</p>
+]]></content:encoded>
+    </item>
   </channel>
 </rss>

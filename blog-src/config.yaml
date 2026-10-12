@@ -1,0 +1,145 @@
+# PaperMod Starter — a ready-to-run Hugo site.
+# Site-specific values are placeholders; feature params are the ones consumed by
+# the layouts in this repo (see README).
+baseURL: "https://gumezm.github.io/blog/"
+publishDir: "../blog"
+title: Blog
+theme: [PaperMod, hugo-shortcode-gallery]
+
+enableInlineShortcodes: true
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+enableEmoji: true
+pygmentsUseClasses: true
+defaultContentLanguage: zh
+hasCJKLanguage: true
+
+minify:
+  disableXML: true
+  minifyOutput: true
+  tdewolff:
+    html:
+      keepDocumentTags: true
+      keepEndTags: true
+      keepQuotes: true
+    css:
+      precision: 2
+    js:
+      precision: 2
+
+permalinks:
+  page:
+    posts: /posts/:year/:month/:day/:contentbasename/
+
+pagination:
+  disableAliases: false
+  pagerSize: 5
+
+languages:
+  zh:
+    languageName: "中文"
+    weight: 1
+    taxonomies:
+      category: categories
+      tag: tags
+      series: series
+    menu:
+      main:
+        - name: 文章
+          url: posts/
+          weight: 1
+        - name: 系列
+          url: series/
+          weight: 2
+        - name: 归档
+          url: archives/
+          weight: 3
+        - name: 分类
+          url: categories/
+          weight: 4
+        - name: 搜索
+          url: search/
+          weight: 5
+        - name: 关于
+          url: about/
+          weight: 6
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+params:
+  env: production
+  description: "Gumezm 的博客"
+  author: "Gumezm"
+  hideAuthor: true
+
+  # Person for personal blogs, Organization for companies.
+  schema:
+    publisherType: Person
+
+  # Shared feature params (keep these aligned with your own site).
+  mainSections: ["posts"]
+  defaultTheme: auto
+  ShowShareButtons: false
+  ShowReadingTime: true
+  ShowWordCount: true
+  displayFullLangName: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowRssButtonInSectionTermList: true
+  ShowAllPagesInArchive: false
+  ShowPageNums: true
+  ShowToc: true
+  DateFormat: "2006-01-02"
+  ShowFullTextinRSS: true
+  comments: false
+  hideSummary: false
+  languageCode: zh
+
+  homeInfoParams:
+    Title: "Gumezm"
+    ImageUrl: /images/avatar.png
+    # Content: 这里写一句自我介绍或签名（留空则不显示）
+    # moreText: "查看更多"   # text of the "view more" link on the home page
+    # moreLink: "posts/"     # target of the "view more" link
+
+  socialIcons:
+    - name: github
+      title: GitHub
+      url: "https://github.com/gumezm"
+    - name: rss
+      title: RSS
+      url: "index.xml"
+
+  # All extendHead options are opt-in and off by default.
+  extendHead:
+    preloadFont: "fonts/inter-7.woff2"
+    # preconnect: "https://example.org"
+    # umamiId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+    # walineHost: "https://waline.example.org"
+
+  assets:
+    disableHLJS: true
+    favicon: "favicon.ico"
+    favicon16x16: "favicon-16x16.png"
+    favicon32x32: "favicon-32x32.png"
+    apple_touch_icon: "apple-touch-icon.png"
+    safari_pinned_tab: "safari-pinned-tab.svg"
+
+  cover:
+    hiddenInList: false
+    hiddenInSingle: true
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false
+    guessSyntax: true

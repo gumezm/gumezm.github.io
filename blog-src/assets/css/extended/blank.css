@@ -1,0 +1,228 @@
+/* ==========================================
+   PaperMod 主题自定义样式
+   
+   本文件包含：
+   - 社交图标悬浮样式
+   - 首页个人信息布局
+   - Waline 表情包样式
+   - 封面图片样式
+   - 分类链接样式
+   
+   注：阅读体验相关样式请参考 reading-experience-optimized.css
+   ========================================== */
+
+/* === 社交图标悬浮样式 === */
+.social-icons svg:hover {
+    transition: 0.15s;
+}
+
+.social-icons a[href*='mailto']:hover svg {
+    color: #ea4335 !important;
+}
+
+.social-icons a[href*='github']:hover svg {
+    color: #7c3aed !important;
+}
+
+.social-icons a[href*='index.xml']:hover svg {
+    color: #ff6600 !important;
+}
+
+/* === 首页个人信息布局样式 === */
+.home-info-main-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 100%;
+}
+
+.home-info-content-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.home-info-avatar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+}
+
+.home-info-avatar-container::after {
+    content: '';
+    position: absolute;
+    right: -16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 60px;
+    background-color: #e5e5e5;
+}
+
+.home-info-text-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.home-info-avatar-img {
+    border-radius: 50% !important;
+    border: 2px solid #f0f0f0;
+    transition: transform 0.2s ease;
+}
+
+.home-info-avatar-img:hover {
+    transform: scale(1.02);
+}
+
+/* 首页响应式设计 */
+@media (max-width: 768px) {
+    .home-info-content-wrapper {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .home-info-text-content {
+        margin-top: 0;
+    }
+    
+    /* 移动端隐藏分隔线 */
+    .home-info-avatar-container::after {
+        display: none;
+    }
+    
+    /* 移动端社交图标居中 */
+    .home-info .entry-footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* === Waline 表情包样式 === */
+.wl-panel {
+    margin-right: 0 !important;
+}
+.wl-content img[src*="huaji"].wl-emoji {
+    max-width: 4em !important;
+    max-height: 3em !important;
+    width: auto !important;
+    height: auto !important;
+    display: inline-block !important;
+}
+
+/* 移动端优化 */
+@media screen and (max-width: 768px) {
+    .wl-content img[src*="huaji"].wl-emoji {
+        max-width: 3em !important;
+        max-height: 2em !important;
+    }
+}
+
+/* 小屏幕手机优化 */
+@media screen and (max-width: 480px) {
+    .wl-content img[src*="huaji"].wl-emoji {
+        max-width: 2.5em !important;
+        max-height: 1.5em !important;
+    }
+}
+
+/* 高分辨率屏幕优化 */
+@media screen and (-webkit-min-device-pixel-ratio: 2),
+screen and (min-resolution: 192dpi) {
+    .wl-content img[src*="huaji"].wl-emoji {
+        max-width: 3.5em !important;
+        max-height: 2.2em !important;
+    }
+}
+
+/* === 分类链接样式 === */
+.post-meta a,
+.archive-meta a,
+.entry-footer a {
+    color: var(--secondary) !important;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.post-meta a:hover,
+.archive-meta a:hover,
+.entry-footer a:hover {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+/* === 文章列表左右布局样式 === */
+.post-entry {
+    display: flex;
+    gap: var(--gap);
+    align-items: stretch;
+}
+
+/* 左侧内容区域 */
+.post-entry .entry-content-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+/* 右侧图片区域 */
+.post-entry .entry-cover-wrapper {
+    flex-shrink: 0;
+    width: 225px;
+}
+
+/* 隐藏无图片容器 */
+.post-entry .entry-cover-wrapper:empty,
+.post-entry .entry-cover-wrapper:not(:has(.entry-cover)) {
+    display: none;
+}
+
+/* Upstream hides covers on term lists (tag/category/series);
+   our left-content/right-cover layout keeps them visible. */
+.post-entry.tag-entry .entry-cover {
+    display: flex;
+}
+
+/* 图片样式 - 统一宽高比 */
+.post-entry .entry-cover {
+    margin-bottom: 0;
+    aspect-ratio: 2 / 1;
+    overflow: hidden;
+}
+
+.post-entry .entry-cover img,
+.post-entry .entry-cover picture,
+.post-entry .entry-cover picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius);
+}
+
+/* 内容间距 */
+.post-entry .entry-header {
+    margin-bottom: 8px;
+}
+
+.post-entry .entry-content {
+    margin: 0 0 8px 0;
+}
+
+.post-entry .entry-footer {
+    margin-top: auto;
+}
+
+/* 移动端 */
+@media (max-width: 640px) {
+    /* 移动端隐藏封面图片 */
+    .post-entry .entry-cover-wrapper {
+        display: none;
+    }
+}

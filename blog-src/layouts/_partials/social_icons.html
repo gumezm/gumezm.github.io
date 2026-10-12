@@ -1,0 +1,20 @@
+{{- /*
+  Override of PaperMod's _partials/social_icons.html.
+
+  The theme emits each social icon URL verbatim, which breaks when the site is
+  served from a sub-path (baseURL = https://gumezm.github.io/blog/): a config
+  value like "/index.xml" would resolve to the domain root instead of /blog/.
+
+  Here, scheme-less URLs are passed through relURL so they always follow the
+  site's baseURL path. Absolute URLs (https://github.com/...) are untouched.
+*/ -}}
+<div class="social-icons" {{ with .align}}align="{{.}}" {{- end }}>
+    {{- range site.Params.socialIcons }}
+    {{- $url := trim .url " " }}
+    {{- if not (hasPrefix $url "http") }}{{ $url = $url | relURL }}{{ end }}
+    <a href="{{ $url | safeURL }}" target="_blank" rel="noopener noreferrer me"
+        title="{{ (.title | default .name) | title }}">
+        {{ partial "svg.html" . }}
+    </a>
+    {{- end }}
+</div>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>CSS on Blog</title>
+    <link>https://gumezm.github.io/blog/tags/css/</link>
+    <description>Recent content in CSS on Blog</description>
+    <generator>Hugo</generator>
+    <language>zh</language>
+    <lastBuildDate>Sat, 08 Aug 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gumezm.github.io/blog/tags/css/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>左文右图列表布局</title>
+      <link>https://gumezm.github.io/blog/posts/2026/08/08/left-right-list/</link>
+      <pubDate>Sat, 08 Aug 2026 00:00:00 +0000</pubDate>
+      <guid>https://gumezm.github.io/blog/posts/2026/08/08/left-right-list/</guid>
+      <description>列表页文字在左、封面在右。</description>
+      <content:encoded><![CDATA[<p>列表页面通过 <code>entry-content-wrapper</code> 与 <code>entry-cover-wrapper</code> 实现左右布局，
+样式见 <code>assets/css/extended/blank.css</code>。</p>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

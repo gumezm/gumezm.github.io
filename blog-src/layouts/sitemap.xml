@@ -1,0 +1,31 @@
+{{ printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  {{ range .Pages }}{{ if not (strings.HasPrefix .RelPermalink "/tags/") }}
+    <url>
+      <loc>{{ .Permalink }}</loc>
+      {{ if not .Lastmod.IsZero }}
+        <lastmod>{{ .Lastmod.Format "2006-01-02T15:04:05-07:00" | safeHTML }}</lastmod>
+      {{ end }}
+      {{ with .Sitemap.ChangeFreq }}
+        <changefreq>{{ . }}</changefreq>
+      {{ end }}
+      {{- /* 根据页面类型设置 priority */ -}}
+      {{- $priority := 0.5 -}}
+      {{- if eq .RelPermalink "/" -}}
+        {{- $priority = 1.0 -}}{{- /* 首页 */ -}}
+      {{- else if eq .Kind "page" -}}
+        {{- if or (hasPrefix .RelPermalink "/posts/") (hasPrefix .RelPermalink "/post/") -}}
+          {{- $priority = 0.9 -}}{{- /* 文章页 */ -}}
+        {{- else if or (eq .RelPermalink "/about/") (eq .RelPermalink "/archives/") -}}
+          {{- $priority = 0.8 -}}{{- /* 关于/归档 */ -}}
+        {{- else -}}
+          {{- $priority = 0.7 -}}{{- /* 其他页面 */ -}}
+        {{- end -}}
+      {{- else if or (eq .Kind "section") (eq .Kind "taxonomy") (eq .Kind "term") -}}
+        {{- $priority = 0.8 -}}{{- /* 分类/系列/标签首页 */ -}}
+      {{- end -}}
+      <priority>{{ $priority }}</priority>
+    </url>
+  {{ end }}{{ end }}
+</urlset>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>PaperMod on Blog</title>
+    <link>https://gumezm.github.io/blog/tags/papermod/</link>
+    <description>Recent content in PaperMod on Blog</description>
+    <generator>Hugo</generator>
+    <language>zh</language>
+    <lastBuildDate>Sat, 01 Aug 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://gumezm.github.io/blog/tags/papermod/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>欢迎使用 PaperMod Starter</title>
+      <link>https://gumezm.github.io/blog/posts/2026/08/01/welcome/</link>
+      <pubDate>Sat, 01 Aug 2026 00:00:00 +0000</pubDate>
+      <guid>https://gumezm.github.io/blog/posts/2026/08/01/welcome/</guid>
+      <description>介绍这个起始站点包含哪些改造。</description>
+      <content:encoded><![CDATA[<p>这是起始站点的第一篇示例文章。</p>
+<h2 id="首页">首页</h2>
+<p>首页只展示最新的 3 篇文章，并且<strong>不会生成分页</strong>，底部通过「查看更多」跳转到文章列表。</p>
+<h2 id="文章列表">文章列表</h2>
+<p>文章列表采用<strong>左文右图</strong>布局，这是从原博客迁移过来的改造之一。</p>
+]]></content:encoded>
+    </item>
+  </channel>
+</rss>

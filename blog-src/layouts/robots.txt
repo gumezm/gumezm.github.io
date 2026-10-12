@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /tags/*/page/
+Sitemap: {{ "sitemap.xml" | absURL }}
