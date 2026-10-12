@@ -1,4 +1,5 @@
 baseURL = 'https://gumezm.github.io/blog/'
+publishDir = '../blog'
 languageCode = 'zh-cn'
 title = 'Blog'
 theme = 'PaperMod'

@@ -1,0 +1,5 @@
+# Hugo 构建中间产物（真正的产物会被 publishDir 发布到仓库根的 blog/）
+blog-src/.hugo_build.lock
+blog-src/resources/
+.hugo_build.lock
+resources/
