@@ -7,12 +7,17 @@
             {{- with site.Params.homeInfoParams }}
             <div class="home-info-avatar home-info-avatar-container">
                 {{- if .ImageUrl -}}
-                {{- $imgSrc := .ImageUrl | absURL }}
+                {{- /* 支持两种写法：站内资源路径（走 Hugo 缩放）与完整外链（原样使用）。
+                       ImageUrl 若是 http(s) 地址就不再 resources.Get，否则 Windows 上会把它当成文件名报错。 */}}
+                {{- $imgSrc := .ImageUrl }}
+                {{- if not (or (hasPrefix .ImageUrl "http://") (hasPrefix .ImageUrl "https://")) }}
+                {{- $imgSrc = urls.JoinPath site.Home.RelPermalink .ImageUrl }}
                 {{- $img := resources.Get .ImageUrl }}
                 {{- if $img }}
                 {{- $size := printf "%dx%d" (.ImageWidth | default 100) (.ImageHeight | default 100) }}
                 {{- $img = $img.Resize $size }}
                 {{- $imgSrc = $img.Permalink }}
+                {{- end }}
                 {{- end }}
                 <img id="home-info-avatar"
                      draggable="false"
