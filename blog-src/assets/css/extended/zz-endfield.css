@@ -48,6 +48,10 @@ html[data-ef="endfield"] {
     --ef-wider: 125%;
     --ef-cut-k: 1;
     --ef-cut: calc(7px * var(--ef-cut-k));
+    /* 悬停时标题/链接的黄色标记：浅色主题用衬底（黄线在白底只有 1.1:1，
+       不能当细线），深色主题换成细黄线。见下方各深色块。 */
+    --ef-mark-hover-h: 0.2em;
+    --ef-mark-hover-y: 90%;
     --ef-snap: cubic-bezier(0.16, 1, 0.3, 1);
     --ef-mech: cubic-bezier(0.7, 0, 0.2, 1);
 
@@ -86,6 +90,8 @@ html[data-ef="endfield"][data-theme="dark"] {
     --code-bg: var(--ef-panel);
     --border: var(--ef-rule);
     --radius: 0;
+    --ef-mark-hover-h: 2px;
+    --ef-mark-hover-y: 96%;
     color-scheme: dark;
 }
 
@@ -112,6 +118,8 @@ html[data-ef="endfield"][data-theme="dark"] {
         --code-bg: var(--ef-panel);
         --border: var(--ef-rule);
         --radius: 0;
+        --ef-mark-hover-h: 2px;
+        --ef-mark-hover-y: 96%;
         color-scheme: dark;
     }
 }
@@ -288,7 +296,7 @@ html[data-ef="endfield"] .logo a {
 }
 
 html[data-ef="endfield"] .logo a:hover {
-    background: linear-gradient(var(--ef-signal), var(--ef-signal)) 0 92% / 100% 0.3em no-repeat;
+    background: linear-gradient(var(--ef-signal), var(--ef-signal)) 0 var(--ef-mark-hover-y) / 100% var(--ef-mark-hover-h) no-repeat;
 }
 
 html[data-ef="endfield"] .menu a {
@@ -432,7 +440,7 @@ html[data-ef="endfield"] .entry-header h2 {
 
 html[data-ef="endfield"] .post-entry:hover .entry-header h2,
 html[data-ef="endfield"] .post-entry:focus-within .entry-header h2 {
-    background: linear-gradient(var(--ef-signal), var(--ef-signal)) 0 88% / 100% 0.32em no-repeat;
+    background: linear-gradient(var(--ef-signal), var(--ef-signal)) 0 var(--ef-mark-hover-y) / 100% var(--ef-mark-hover-h) no-repeat;
 }
 
 html[data-ef="endfield"] .entry-footer {
@@ -491,7 +499,7 @@ html[data-ef="endfield"] .breadcrumbs a {
 
 html[data-ef="endfield"] .post-meta a:hover {
     color: var(--ef-ink);
-    background: linear-gradient(var(--ef-signal), var(--ef-signal)) 0 100% / 100% 0.3em no-repeat;
+    background: linear-gradient(var(--ef-signal), var(--ef-signal)) 0 var(--ef-mark-hover-y) / 100% var(--ef-mark-hover-h) no-repeat;
 }
 
 /* 字段分隔符：原版显示 ·（由 post_meta.html 输出），终末地替换为 │ */
@@ -691,7 +699,7 @@ html[data-ef="endfield"] .paginav .title {
 }
 
 html[data-ef="endfield"] .paginav a:hover span:not(.title) {
-    background: linear-gradient(var(--ef-signal), var(--ef-signal)) 0 88% / 100% 0.32em no-repeat;
+    background: linear-gradient(var(--ef-signal), var(--ef-signal)) 0 var(--ef-mark-hover-y) / 100% var(--ef-mark-hover-h) no-repeat;
     text-decoration: none;
 }
 
@@ -726,7 +734,7 @@ html[data-ef="endfield"] .archive-entry-title {
 }
 
 html[data-ef="endfield"] .archive-entry-title:hover {
-    background: linear-gradient(var(--ef-signal), var(--ef-signal)) 0 88% / 100% 0.32em no-repeat;
+    background: linear-gradient(var(--ef-signal), var(--ef-signal)) 0 var(--ef-mark-hover-y) / 100% var(--ef-mark-hover-h) no-repeat;
 }
 
 html[data-ef="endfield"] .archive-meta {
@@ -799,7 +807,7 @@ html[data-ef="endfield"] .footer {
 }
 
 html[data-ef="endfield"] .footer a:hover {
-    background: linear-gradient(var(--ef-signal), var(--ef-signal)) 0 88% / 100% 0.3em no-repeat;
+    background: linear-gradient(var(--ef-signal), var(--ef-signal)) 0 var(--ef-mark-hover-y) / 100% var(--ef-mark-hover-h) no-repeat;
 }
 
 html[data-ef="endfield"] .top-link {
