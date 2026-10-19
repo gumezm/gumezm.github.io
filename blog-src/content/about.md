@@ -10,8 +10,7 @@ Hi，我是 Gumezm。
 
 ## 友链
 
-- [丘卡饮品店](https://blog.zerolacqua.top) —— 要来点喝的吗？
-- [栖云牧宇](https://blog.moooyuuu.cloud) —— 捣鼓各种乱七八糟的服务器应用，偶尔记录生活
+暂无
 
 ## 欢迎互换友链
 

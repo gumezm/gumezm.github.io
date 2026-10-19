@@ -391,10 +391,7 @@
       <description>关于</description>
       <content:encoded><![CDATA[<p>Hi，我是 Gumezm。</p>
 <h2 id="友链">友链</h2>
-<ul>
-<li><a href="https://blog.zerolacqua.top">丘卡饮品店</a> —— 要来点喝的吗？</li>
-<li><a href="https://blog.moooyuuu.cloud">栖云牧宇</a> —— 捣鼓各种乱七八糟的服务器应用，偶尔记录生活</li>
-</ul>
+<p>暂无</p>
 <h2 id="欢迎互换友链">欢迎互换友链</h2>
 <p>本站信息如下，按同样的格式加到你自己的友链页即可：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl">- <span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l">Gumezm</span><span class="w">
