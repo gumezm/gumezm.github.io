@@ -248,10 +248,19 @@ html[data-ef="endfield"] .ef-tri i:nth-child(3) {
     cursor: pointer;
 }
 
-.style-switch button[aria-pressed="true"] {
-    background: var(--theme);
+.style-switch button:hover {
     color: var(--primary);
+}
+
+/* 当前段墨底反白：--theme 在浅色是白、深色是近黑，和 --primary 正好互为反色 */
+.style-switch button[aria-pressed="true"] {
+    background: var(--primary);
+    color: var(--theme);
     font-weight: 700;
+}
+
+.style-switch button[aria-pressed="true"]:hover {
+    color: var(--theme);
 }
 
 html[data-ef="endfield"] .style-switch {
