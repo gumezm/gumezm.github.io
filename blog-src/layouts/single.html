@@ -6,6 +6,8 @@
 <article class="post-single">
   <header class="post-header">
     {{ partial "breadcrumbs.html" . }}
+    {{- /* 终末地模式专属：眉标（分区直译）+ 标题下的三色条，原版模式下隐藏 */}}
+    {{- if eq .Section "posts" }}<p class="ef-eyebrow slash ef-only">POSTS</p>{{ end }}
     <h1 class="post-title entry-hint-parent">
       {{ .Title }}
       {{- if .Draft }}
@@ -25,6 +27,7 @@
       {{- partial "post_canonical.html" . -}}
     </div>
     {{- end }}
+    <div class="ef-tri post-header-tri ef-only" aria-hidden="true"><i></i><i></i><i></i></div>
   </header>
   {{- $isHidden := (.Param "cover.hiddenInSingle") | default (.Param "cover.hidden") | default false }}
   {{- partial "cover.html" (dict "cxt" . "IsSingle" true "isHidden" $isHidden) }}

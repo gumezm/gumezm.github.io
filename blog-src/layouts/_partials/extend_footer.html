@@ -1,0 +1,34 @@
+{{- /* 界面风格切换（原版 / 终末地）：点击写 localStorage 并翻转 html[data-ef]，
+       aria-pressed 标出当前段。样式见 zz-endfield.css 的 .style-switch 部分。 */}}
+<script>
+    (function () {
+        var root = document.documentElement;
+        var buttons = document.querySelectorAll('[data-style-pick]');
+        if (!buttons.length) return;
+
+        function apply(style) {
+            root.setAttribute('data-ef', style);
+            buttons.forEach(function (b) {
+                b.setAttribute('aria-pressed', b.getAttribute('data-style-pick') === style ? 'true' : 'false');
+            });
+        }
+
+        buttons.forEach(function (b) {
+            b.addEventListener('click', function () {
+                var style = b.getAttribute('data-style-pick');
+                try { localStorage.setItem('pref-style', style); } catch (e) { }
+                apply(style);
+            });
+        });
+
+        apply(root.getAttribute('data-ef') === 'classic' ? 'classic' : 'endfield');
+
+        /* 换页快门（同源 @view-transition）：仅终末地模式启用，原版保持 PaperMod 原行为 */
+        if (root.getAttribute('data-ef') !== 'classic'
+            && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            var vt = document.createElement('style');
+            vt.textContent = '@view-transition{navigation:auto}';
+            document.head.appendChild(vt);
+        }
+    })();
+</script>

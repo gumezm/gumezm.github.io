@@ -39,5 +39,6 @@
 {{- end }}
 
 {{- with ($scratch.Get "meta") }}
-    {{- delimit . "&nbsp;·&nbsp;" | safeHTML -}}
+    {{- /* 分隔符包一层 span：原版显示 ·，终末地模式由 CSS 换成 │（见 zz-endfield.css .meta-sep） */}}
+    {{- delimit . "&nbsp;<span class=\"meta-sep\">·</span>&nbsp;" | safeHTML -}}
 {{- end -}}

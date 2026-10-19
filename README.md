@@ -50,6 +50,54 @@ git submodule update --init --recursive
 
 详情见：<https://her-cat.com/posts/2025/10/08/hugo-paper-mod/>
 
+## 终末地风味主题
+
+博客默认使用「终末地风味」界面，按
+[endfield-ui-skill](https://github.com/hhikr/endfield-ui-skill) 的规范适配到 PaperMod 的 DOM，
+**没有使用任何游戏官方素材**（字体、标志、图标、立绘、截图均未使用）。
+
+页头有一组「原版 │ 终末地」切换按钮：选择写进 `localStorage["pref-style"]`，
+刷新和跨页面都保持；选「原版」时所有终末地样式整体失效，回退到 PaperMod 原生外观。
+
+### 变体卡
+
+```text
+变体：standard（yellow #FFFA00 / neutral / standard / contours / standard / full）
+主视觉：首页 GUMEZM 宽体字标 + 切角头像画框；最近更新与篇数取自站点真实内容
+页面类型：首页展示，其余阅读
+```
+
+### 实现要点
+
+| 文件 | 作用 |
+| --- | --- |
+| `assets/css/extended/zz-endfield.css` | 主题全部样式；所有规则都限定在 `html[data-ef="endfield"]` 下，`classic` 模式自动失效 |
+| `assets/css/extended/saira.css` | 自托管 Saira 可变字体（`wght` 100–900、`wdth` 50–125），仅在终末地模式被引用 |
+| `static/fonts/saira/` | Saira 字体与 OFL 许可证 |
+| `static/contours/` | 背景等高线 SVG（来自 skill 的 `assets/contours/`） |
+| `layouts/baseof.html` | 在 `<html>` 上写 `data-ef="endfield"` 默认值 |
+| `layouts/_partials/extend_head.html` | 首帧前按 `localStorage` 恢复风格，避免闪烁 |
+| `layouts/_partials/extend_footer.html` | 切换按钮逻辑；终末地模式下注入同源 `@view-transition` 换页快门 |
+| `layouts/_partials/header.html` | 页头的风格切换控件 |
+| `layouts/_partials/home_info.html`、`list.html`、`single.html`、`archives.html`、`search.html`、`taxonomy.html` | 眉标（`// POSTS` 之类）、真实计数、标题下三色条 |
+
+### 设计约束（改样式前先看）
+
+- **只有一种强调色** `#FFFA00`，只表示「当前位置 / 可点击 / 醒目提醒」，只做填充，
+  上面的字用墨色；浅色主题里不要把它当线条或文字颜色。
+- 切掉一个角 = 可以按；正文、图片、展示栏目一律直角；`--radius` 固定为 0。
+- 不使用投影、发光、渐变填充；分区用 1px 细线。
+- 编号、日期、计数必须来自真实数据，不编造。
+- 动效短、硬、机械，系统开启「减少动态效果」时全部静止。
+- 深色主题是另一套完整取值（纸 `#191919`、板 `#222222`），不是简单反色。
+
+### 内容侧用法
+
+终末地模式下会在标题上方自动加英文眉标（中文标题的直译），映射表在
+`layouts/list.html` 的 `$efEyebrows` 里；新增栏目页时给它补一条即可，想不出贴切英文就留空
+（只显示中文标题）。这些元素都带 `ef-only` 类，切到原版模式即隐藏。
+
+
 ## 配置
 
 主要参数见 `config.yaml`，重点：
@@ -184,5 +232,8 @@ certutil -hashfile blog/assets/css/stylesheet.<hash>.css SHA256
 
 - 基于 [adityatelange/hugo-PaperMod](https://github.com/adityatelange/hugo-PaperMod)（MIT）。
 - 图库使用 [mfg92/hugo-shortcode-gallery](https://github.com/mfg92/hugo-shortcode-gallery)。
-- 字体为 [Inter](https://fonts.google.com/specimen/Inter)（SIL OFL）。
+- 字体为 [Inter](https://fonts.google.com/specimen/Inter) 与
+  [Saira](https://github.com/Omnibus-Type/Saira)（均为 SIL OFL，Saira 许可证见 `blog-src/static/fonts/saira/OFL.txt`）。
+- 终末地风味的规则与部件取自 [hhikr/endfield-ui-skill](https://github.com/hhikr/endfield-ui-skill)；
+  未使用《明日方舟：终末地》的任何官方素材。
 - 本仓库的改造部分同样以 MIT 发布。

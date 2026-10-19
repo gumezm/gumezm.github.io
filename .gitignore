@@ -4,7 +4,7 @@ blog-src/resources/
 .hugo_build.lock
 resources/
 resources/_gen/
-
+.gitgraph/
 # 其他
 node_modules/
 .DS_Store

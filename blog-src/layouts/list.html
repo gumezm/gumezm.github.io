@@ -5,8 +5,20 @@
 {{- else }} {{/* if not profileMode */}}
 
 {{- if not .IsHome | and .Title }}
+{{- /* 终末地模式：标题上方加宽体大写英文眉标（中文标题的直译），下方加真实计数。
+       想不出贴切英文的标题就不加眉标，只保留中文。 */}}
+{{- $efEyebrows := dict "文章" "POSTS" "系列" "SERIES" "分类" "CATEGORIES" "标签" "TAGS" "归档" "ARCHIVES" "关于" "ABOUT" "搜索" "SEARCH" }}
+{{- $efEyebrow := index $efEyebrows .Title }}
+{{- $efCount := len (union .RegularPages .Sections) }}
+{{- if eq .Kind "term" }}
+{{- /* 具体分类/标签/系列页：眉标取分类法的英文名（CATEGORY / TAG / SERIES） */}}
+{{- $efSingulars := dict "category" "CATEGORY" "tag" "TAG" "series" "SERIES" }}
+{{- $efEyebrow = index $efSingulars .Data.Singular }}
+{{- $efCount = len .Data.Pages }}
+{{- end }}
 <header class="page-header">
   {{- partial "breadcrumbs.html" . }}
+  {{- with $efEyebrow }}<p class="ef-eyebrow slash ef-only">{{ . }}</p>{{ end }}
   <h1>
     {{ .Title }}
     {{- if and (or (eq .Kind `term`) (eq .Kind `section`)) (.Param "ShowRssButtonInSectionTermList") }}
@@ -22,6 +34,7 @@
     {{- end }}
     {{- end }}
   </h1>
+  <p class="ef-field ef-only page-header-count">{{ $efCount }} 篇</p>
   {{- if .Description }}
   <div class="post-description">
     {{ .Description | markdownify }}

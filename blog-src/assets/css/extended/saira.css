@@ -1,0 +1,12 @@
+/*
+ * Saira — 终末地风格用的宽体几何拉丁字体（自托管，SIL OFL 1.1，许可证见 /fonts/saira/OFL.txt）
+ * 可变字体：wght 100–900，wdth 50–125（font-stretch 用它拉开英文字宽）
+ * 仅在终末地模式（html[data-ef="endfield"]）的选择器里被引用，浏览器不会在原版模式下下载。
+ */
+@font-face {
+  font-family: 'Saira';
+  src: url('../../fonts/saira/Saira.ttf') format('truetype-variations');
+  font-weight: 100 900;
+  font-stretch: 50% 125%;
+  font-display: swap;
+}

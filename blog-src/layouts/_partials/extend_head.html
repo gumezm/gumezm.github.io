@@ -21,3 +21,16 @@
 <link rel="dns-prefetch" href="{{ $eh.walineHost }}">
 <link rel="dns-prefetch" href="https://unpkg.com">
 {{- end }}
+
+{{- /* 界面风格开关：首帧前恢复用户选择，避免样式闪烁。
+       baseof.html 已默认 data-ef="endfield"，这里仅在用户选过"原版"时改回 classic。 */}}
+<script>
+    (function () {
+        try {
+            if (localStorage.getItem('pref-style') === 'classic') {
+                document.documentElement.setAttribute('data-ef', 'classic');
+            }
+        } catch (e) { /* 隐私模式等场景下保持默认 endfield */ }
+    })();
+</script>
+

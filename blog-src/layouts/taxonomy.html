@@ -1,0 +1,32 @@
+{{- define "main" }}
+
+{{- /* 终末地模式：按分类法给英文眉标（分类 / 标签 / 系列），并给出分类项数 */}}
+{{- $efEyebrows := dict "category" "CATEGORIES" "tag" "TAGS" "series" "SERIES" }}
+{{- $efEyebrow := index $efEyebrows .Data.Singular }}
+{{- if .Title }}
+<header class="page-header">
+    {{- with $efEyebrow }}<p class="ef-eyebrow slash ef-only">{{ . }}</p>{{ end }}
+    <h1>{{ .Title }}</h1>
+    <p class="ef-field ef-only page-header-count">{{ len .Data.Terms }} 项</p>
+    {{- if .Description }}
+    <div class="post-description">
+        {{ .Description }}
+    </div>
+    {{- end }}
+</header>
+{{- end }}
+
+<ul class="terms-tags">
+    {{- $type := .Type }}
+        {{- range $key, $value := .Data.Terms.Alphabetical }}
+            {{- $name := .Name }}
+            {{- $count := .Count }}
+            {{- with site.GetPage (printf "/%s/%s" $type $name) }}
+            <li>
+                <a href="{{ .Permalink }}">{{ .LinkTitle }} <sup><strong><sup>{{ $count }}</sup></strong></sup> </a>
+            </li>
+        {{- end }}
+    {{- end }}
+</ul>
+
+{{- end }}{{/* end main */ -}}

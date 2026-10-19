@@ -1,0 +1,843 @@
+/* ==========================================================================
+   终末地风味主题 —— 基于 endfield-ui-skill（github.com/hhikr/endfield-ui-skill）的
+   固定规则适配到 PaperMod 的 DOM。未使用任何游戏官方素材。
+
+   变体卡
+   ------
+   变体：standard（yellow #FFFA00 / neutral / standard / contours / standard / full）
+   主视觉：首页 GUMEZM 宽体字标 + 头像切角画框；数据全部来自站点真实内容
+   页面类型：首页展示，其余阅读
+
+   开关
+   ----
+   html[data-ef="endfield"] → 本文件全部生效（默认）
+   html[data-ef="classic"]  → 完全回退 PaperMod 原版（本文件所有规则都带该作用域）
+   切换控件在页头（.style-switch），选择存 localStorage["pref-style"]。
+
+   文件名 zz- 前缀：Hugo 按 lexical 顺序拼接 assets/css/extended/*.css，
+   保证本文件排在 reading.css / blank.css 之后，能覆盖它们的旧规则。
+   ========================================================================== */
+
+/* ---------- 0. 仅终末地模式显示的元素 ---------- */
+.ef-only {
+    display: none;
+}
+
+html[data-ef="endfield"] .ef-only {
+    display: block;
+}
+
+/* ---------- 1. tokens：Endfield 色板映射到 PaperMod 变量 ---------- */
+html[data-ef="endfield"] {
+    --ef-paper: #f4f4f2;
+    --ef-panel: #ffffff;
+    --ef-ink: #161616;
+    --ef-ink-2: #5c5c5c;
+    --ef-rule: #d9d9d6;
+    --ef-chip: #e4e4e0;
+    --ef-signal: #fffa00;
+    --ef-on-signal: #161616;
+    --ef-trace: var(--ef-ink);
+    --ef-danger: #b3261e; /* 只有删除会用；本站无删除操作，仅保留定义 */
+    --ef-tri-a: #ff00f0;
+    --ef-tri-c: #00ffa2;
+    --ef-contour: color-mix(in srgb, var(--ef-ink) 9%, transparent);
+    --ef-hatch: repeating-linear-gradient(-45deg, transparent 0 5px, color-mix(in srgb, var(--ef-ink) 22%, transparent) 5px 6.5px);
+    --ef-font-ui: 'Saira', 'Inter', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Source Han Sans SC', sans-serif;
+    --ef-wide: 112%;
+    --ef-wider: 125%;
+    --ef-cut-k: 1;
+    --ef-cut: calc(7px * var(--ef-cut-k));
+    --ef-snap: cubic-bezier(0.16, 1, 0.3, 1);
+    --ef-mech: cubic-bezier(0.7, 0, 0.2, 1);
+
+    /* PaperMod 变量重映射 */
+    --theme: var(--ef-paper);
+    --entry: var(--ef-panel);
+    --primary: var(--ef-ink);
+    --secondary: var(--ef-ink-2);
+    --tertiary: var(--ef-ink-2);
+    --content: var(--ef-ink);
+    --code-bg: var(--ef-paper);
+    --border: var(--ef-rule);
+    --radius: 0;
+    scrollbar-color: var(--ef-rule) transparent;
+    color-scheme: light;
+}
+
+html[data-ef="endfield"][data-theme="dark"] {
+    --ef-paper: #191919;
+    --ef-panel: #222222;
+    --ef-ink: #ededed;
+    --ef-ink-2: #a3a3a3;
+    --ef-rule: #353535;
+    --ef-chip: #2e2e2e;
+    --ef-signal: #fffa00;
+    --ef-on-signal: #161616;
+    --ef-trace: var(--ef-signal);
+    --ef-contour: color-mix(in srgb, var(--ef-ink) 9%, transparent);
+    --ef-hatch: repeating-linear-gradient(-45deg, transparent 0 5px, color-mix(in srgb, var(--ef-ink) 22%, transparent) 5px 6.5px);
+    --theme: var(--ef-paper);
+    --entry: var(--ef-panel);
+    --primary: var(--ef-ink);
+    --secondary: var(--ef-ink-2);
+    --tertiary: var(--ef-ink-2);
+    --content: var(--ef-ink);
+    --code-bg: var(--ef-panel);
+    --border: var(--ef-rule);
+    --radius: 0;
+    color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+    /* 无 JS 时的深色回退：baseof 写的是 data-theme="auto" */
+    html[data-ef="endfield"][data-theme="auto"] {
+        --ef-paper: #191919;
+        --ef-panel: #222222;
+        --ef-ink: #ededed;
+        --ef-ink-2: #a3a3a3;
+        --ef-rule: #353535;
+        --ef-chip: #2e2e2e;
+        --ef-signal: #fffa00;
+        --ef-on-signal: #161616;
+        --ef-trace: var(--ef-signal);
+        --ef-contour: color-mix(in srgb, var(--ef-ink) 9%, transparent);
+        --ef-hatch: repeating-linear-gradient(-45deg, transparent 0 5px, color-mix(in srgb, var(--ef-ink) 22%, transparent) 5px 6.5px);
+        --theme: var(--ef-paper);
+        --entry: var(--ef-panel);
+        --primary: var(--ef-ink);
+        --secondary: var(--ef-ink-2);
+        --tertiary: var(--ef-ink-2);
+        --content: var(--ef-ink);
+        --code-bg: var(--ef-panel);
+        --border: var(--ef-rule);
+        --radius: 0;
+        color-scheme: dark;
+    }
+}
+
+/* ---------- 2. base ---------- */
+html[data-ef="endfield"] ::selection {
+    background: var(--ef-signal);
+    color: var(--ef-on-signal);
+}
+
+html[data-ef="endfield"] :focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+html[data-ef="endfield"] body {
+    background: var(--ef-paper);
+    color: var(--ef-ink);
+    font-family: var(--ef-font-ui);
+    /* 抵消 reading.css 的 body{position:absolute;width:100vw}：它把滚动条宽度
+       算进视口，导致出现 15px 的横向溢出。防抖动由 html{overflow-y:scroll} 负责。 */
+    position: static;
+    width: auto;
+    overflow: visible;
+}
+
+/* 页面顶部的三色条 */
+html[data-ef="endfield"] body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 999;
+    background: linear-gradient(90deg,
+            var(--ef-tri-a) 0 33.4%,
+            var(--ef-signal) 33.4% 66.7%,
+            var(--ef-tri-c) 66.7% 100%);
+}
+
+/* 两片极淡的等高线（右上、左下） */
+html[data-ef="endfield"] body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: var(--ef-contour);
+    -webkit-mask: url('../../contours/contour-a.svg') right -9rem top -7rem / 52rem auto no-repeat,
+        url('../../contours/contour-b.svg') left -6rem bottom -14rem / 40rem auto no-repeat;
+    mask: url('../../contours/contour-a.svg') right -9rem top -7rem / 52rem auto no-repeat,
+        url('../../contours/contour-b.svg') left -6rem bottom -14rem / 40rem auto no-repeat;
+}
+
+@media (max-width: 719px) {
+    html[data-ef="endfield"] body::after {
+        -webkit-mask: url('../../contours/contour-a.svg') right -12rem top -4rem / 34rem auto no-repeat;
+        mask: url('../../contours/contour-a.svg') right -12rem top -4rem / 34rem auto no-repeat;
+    }
+}
+
+/* ---------- 3. 眉标 / 字段 / 三色条 ---------- */
+html[data-ef="endfield"] .ef-eyebrow {
+    font-family: var(--ef-font-ui);
+    font-size: 0.7rem;
+    font-stretch: var(--ef-wider);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    line-height: 1.4;
+    text-transform: uppercase;
+    color: var(--ef-ink-2);
+    margin: 0 0 0.5rem;
+}
+
+html[data-ef="endfield"] .ef-eyebrow.slash::before {
+    content: '// ';
+    letter-spacing: 0;
+}
+
+html[data-ef="endfield"] .ef-field {
+    font-family: var(--ef-font-ui);
+    font-size: 0.8125rem;
+    font-stretch: var(--ef-wide);
+    letter-spacing: 0.02em;
+    line-height: 1.5;
+    color: var(--ef-ink-2);
+    font-variant-numeric: tabular-nums;
+}
+
+html[data-ef="endfield"] .ef-tri {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    height: 3px;
+}
+
+html[data-ef="endfield"] .ef-tri i:nth-child(1) {
+    background: var(--ef-tri-a);
+}
+
+html[data-ef="endfield"] .ef-tri i:nth-child(2) {
+    background: var(--ef-signal);
+}
+
+html[data-ef="endfield"] .ef-tri i:nth-child(3) {
+    background: var(--ef-tri-c);
+}
+
+/* ---------- 4. 风格切换控件（原版 / 终末地） ---------- */
+/* 基础样式用 PaperMod 变量，两种模式下都可读 */
+.style-switch {
+    display: inline-flex;
+    align-items: stretch;
+    border: 1px solid var(--tertiary);
+    margin-left: 10px;
+}
+
+.style-switch button {
+    border: 0;
+    background: transparent;
+    color: var(--secondary);
+    font: inherit;
+    font-size: 13px;
+    line-height: 1.4;
+    padding: 3px 9px;
+    cursor: pointer;
+}
+
+.style-switch button[aria-pressed="true"] {
+    background: var(--theme);
+    color: var(--primary);
+    font-weight: 700;
+}
+
+html[data-ef="endfield"] .style-switch {
+    border-color: var(--ef-ink);
+    margin-left: 12px;
+}
+
+/* 分段选择：当前段墨底反白（本风格的分段选择不用黄） */
+html[data-ef="endfield"] .style-switch button {
+    font-family: var(--ef-font-ui);
+    font-size: 0.72rem;
+    font-stretch: var(--ef-wide);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 0.16rem 0.55rem;
+    color: var(--ef-ink-2);
+    transition: color 0.12s, background-color 0.12s;
+}
+
+html[data-ef="endfield"] .style-switch button:hover {
+    color: var(--ef-ink);
+}
+
+html[data-ef="endfield"] .style-switch button[aria-pressed="true"] {
+    background: var(--ef-ink);
+    color: var(--ef-paper);
+}
+
+/* ---------- 5. 页头 ---------- */
+html[data-ef="endfield"] .header-nav {
+    border-bottom: 1px solid var(--ef-ink);
+}
+
+html[data-ef="endfield"] .logo,
+html[data-ef="endfield"] .logo a {
+    font-family: var(--ef-font-ui);
+    font-weight: 800;
+    font-size: 1.05rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-stretch: var(--ef-wider);
+}
+
+html[data-ef="endfield"] .logo a:hover {
+    background: linear-gradient(var(--ef-signal), var(--ef-signal)) 0 92% / 100% 0.3em no-repeat;
+}
+
+html[data-ef="endfield"] .menu a {
+    font-weight: 600;
+}
+
+html[data-ef="endfield"] .menu a span {
+    padding: 0.3rem 0.6rem 0.3rem 0.5rem;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--ef-cut)), calc(100% - var(--ef-cut)) 100%, 0 100%);
+    transition: background-color 0.12s, color 0.12s;
+}
+
+/* 当前分区与悬停：黄块 + 墨字（可点击内容） */
+html[data-ef="endfield"] .menu a span:hover,
+html[data-ef="endfield"] .menu .active {
+    background: var(--ef-signal);
+    color: var(--ef-on-signal);
+}
+
+html[data-ef="endfield"] .theme-toggle {
+    border-radius: 0;
+    transition: background-color 0.12s, color 0.12s;
+}
+
+html[data-ef="endfield"] .theme-toggle:hover {
+    background: var(--ef-signal);
+    color: var(--ef-on-signal);
+}
+
+/* 移动端菜单是横向滚动区，把系统滚动条收细，避免压出一条粗灰带 */
+html[data-ef="endfield"] .menu {
+    scrollbar-width: thin;
+    scrollbar-color: var(--ef-rule) transparent;
+}
+
+html[data-ef="endfield"] .menu::-webkit-scrollbar {
+    height: 2px;
+}
+
+html[data-ef="endfield"] .menu::-webkit-scrollbar-thumb {
+    background: var(--ef-rule);
+}
+
+/* ---------- 6. 首页（展示）：字标、头像、字段 ---------- */
+html[data-ef="endfield"] .home-info .entry-header h1 {
+    font-family: var(--ef-font-ui);
+    font-weight: 800;
+    font-stretch: var(--ef-wider);
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    line-height: 1.05;
+    font-size: clamp(2.4rem, 7vw, 4rem);
+}
+
+html[data-ef="endfield"] .home-info-avatar-img {
+    border-radius: 0 !important;
+    border: 0 !important;
+    clip-path: polygon(calc(1.2rem * var(--ef-cut-k)) 0, 100% 0, 100% calc(100% - 1.2rem * var(--ef-cut-k)), calc(100% - 1.2rem * var(--ef-cut-k)) 100%, 0 100%, 0 calc(1.2rem * var(--ef-cut-k)));
+    transition: none !important;
+    transform: none !important;
+}
+
+html[data-ef="endfield"] .home-info-avatar-container::after {
+    background-color: var(--ef-rule);
+}
+
+/* 首屏不需要 PaperMod 的 320px 最小高度，收紧留白 */
+html[data-ef="endfield"] .first-entry.home-info {
+    min-height: 0;
+    margin: var(--gap) 0 var(--gap);
+}
+
+html[data-ef="endfield"] .home-info-facts {
+    margin: 0.9rem 0 0;
+}
+
+html[data-ef="endfield"] .home-info-facts > * + *::before {
+    content: '│';
+    margin: 0 0.7em;
+    color: var(--ef-rule);
+}
+
+/* 社交图标：去掉模板时代的彩色悬停 */
+html[data-ef="endfield"] .social-icons a svg {
+    color: var(--ef-ink-2) !important;
+}
+
+html[data-ef="endfield"] .social-icons a:hover svg {
+    color: var(--ef-ink) !important;
+}
+
+/* ---------- 7. 列表：细线记录行 ---------- */
+html[data-ef="endfield"] .post-entry {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--ef-rule);
+    border-radius: 0;
+    padding: var(--gap) 0.4rem;
+    margin-bottom: 0;
+    transform: none;
+    transition: none;
+}
+
+html[data-ef="endfield"] .post-entry:hover,
+html[data-ef="endfield"] .post-entry:focus-within {
+    transform: none;
+    border-color: var(--ef-rule);
+}
+
+/* 悬停：左侧落下当前位置色条，整行右移 6px */
+html[data-ef="endfield"] .post-entry::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 4px;
+    background: var(--ef-trace);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.2s var(--ef-snap);
+}
+
+html[data-ef="endfield"] .post-entry:hover::before,
+html[data-ef="endfield"] .post-entry:focus-within::before {
+    transform: none;
+}
+
+html[data-ef="endfield"] .post-entry .entry-content-wrapper,
+html[data-ef="endfield"] .post-entry .entry-cover-wrapper {
+    transition: transform 0.25s var(--ef-snap);
+}
+
+html[data-ef="endfield"] .post-entry:hover .entry-content-wrapper,
+html[data-ef="endfield"] .post-entry:focus-within .entry-content-wrapper {
+    transform: translateX(6px);
+}
+
+/* 标题悬停：黄色荧光笔衬底 */
+html[data-ef="endfield"] .entry-header h2 {
+    width: fit-content;
+}
+
+html[data-ef="endfield"] .post-entry:hover .entry-header h2,
+html[data-ef="endfield"] .post-entry:focus-within .entry-header h2 {
+    background: linear-gradient(var(--ef-signal), var(--ef-signal)) 0 88% / 100% 0.32em no-repeat;
+}
+
+html[data-ef="endfield"] .entry-footer {
+    font-family: var(--ef-font-ui);
+    font-size: 0.8125rem;
+    font-stretch: var(--ef-wide);
+    font-variant-numeric: tabular-nums;
+}
+
+/* 列表/归档页头：墨色横线收底 */
+html[data-ef="endfield"] .page-header {
+    border-bottom: 1px solid var(--ef-ink);
+    padding-bottom: 1.1rem;
+}
+
+html[data-ef="endfield"] .page-header h1 {
+    font-family: var(--ef-font-ui);
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+html[data-ef="endfield"] .page-header-count {
+    margin: 0;
+}
+
+/* ---------- 8. 文章页（阅读） ---------- */
+html[data-ef="endfield"] .post-header {
+    border-bottom: 1px solid var(--ef-ink);
+    padding-bottom: 1.4rem;
+}
+
+html[data-ef="endfield"] .post-title {
+    font-family: var(--ef-font-ui);
+    font-weight: 800;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+}
+
+html[data-ef="endfield"] .ef-tri.post-header-tri {
+    margin-top: 1.1rem;
+}
+
+html[data-ef="endfield"] .post-meta,
+html[data-ef="endfield"] .breadcrumbs {
+    font-family: var(--ef-font-ui);
+    font-size: 0.8125rem;
+    font-stretch: var(--ef-wide);
+    font-variant-numeric: tabular-nums;
+    color: var(--ef-ink-2);
+}
+
+html[data-ef="endfield"] .post-meta a,
+html[data-ef="endfield"] .breadcrumbs a {
+    color: var(--ef-ink-2);
+    text-decoration: none;
+}
+
+html[data-ef="endfield"] .post-meta a:hover {
+    color: var(--ef-ink);
+    background: linear-gradient(var(--ef-signal), var(--ef-signal)) 0 100% / 100% 0.3em no-repeat;
+}
+
+/* 字段分隔符：原版显示 ·（由 post_meta.html 输出），终末地替换为 │ */
+html[data-ef="endfield"] .meta-sep {
+    font-size: 0;
+}
+
+html[data-ef="endfield"] .meta-sep::before {
+    content: '│';
+    font-size: 0.8125rem;
+    color: var(--ef-rule);
+}
+
+/* 目录 */
+html[data-ef="endfield"] details.toc {
+    border: 1px solid var(--ef-rule);
+    background: var(--ef-panel);
+}
+
+html[data-ef="endfield"] details.toc summary {
+    font-family: var(--ef-font-ui);
+    color: var(--ef-ink-2);
+}
+
+/* 正文 */
+html[data-ef="endfield"] .post-content {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif;
+}
+
+html[data-ef="endfield"] .post-content :is(h1, h2, h3, h4, h5, h6) {
+    font-family: var(--ef-font-ui);
+}
+
+html[data-ef="endfield"] .post-content :is(h1, h2) {
+    border-bottom: 1px solid var(--ef-rule);
+}
+
+/* 链接：墨字压黄色下划块；深色换成细黄线 */
+html[data-ef="endfield"] .post-content a,
+html[data-ef="endfield"] .md-content a:not(.anchor) {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: var(--ef-signal);
+    text-decoration-thickness: 0.4em;
+    text-underline-offset: -0.18em;
+    text-decoration-skip-ink: none;
+    transition: none;
+}
+
+html[data-ef="endfield"][data-theme="dark"] .post-content a,
+html[data-ef="endfield"][data-theme="dark"] .md-content a:not(.anchor) {
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 0.25em;
+}
+
+@media (prefers-color-scheme: dark) {
+    html[data-ef="endfield"][data-theme="auto"] .post-content a,
+    html[data-ef="endfield"][data-theme="auto"] .md-content a:not(.anchor) {
+        text-decoration-thickness: 1.5px;
+        text-underline-offset: 0.25em;
+    }
+}
+
+html[data-ef="endfield"] .post-content blockquote {
+    border-inline-start: 3px solid var(--ef-ink);
+    background: transparent;
+    border-radius: 0;
+    color: var(--ef-ink-2);
+}
+
+html[data-ef="endfield"] .post-content code {
+    border-radius: 0;
+    border: 1px solid var(--ef-rule);
+    background: var(--ef-paper);
+}
+
+html[data-ef="endfield"] pre,
+html[data-ef="endfield"] .post-content pre code {
+    border-radius: 0;
+}
+
+html[data-ef="endfield"] .copy-code {
+    border-radius: 0;
+    border: 0;
+    background: var(--ef-chip);
+    color: var(--ef-ink);
+    font-family: var(--ef-font-ui);
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--ef-cut)), calc(100% - var(--ef-cut)) 100%, 0 100%);
+    transition: background-color 0.12s, color 0.12s;
+}
+
+html[data-ef="endfield"] .copy-code:hover {
+    background: var(--ef-signal);
+    color: var(--ef-on-signal);
+}
+
+/* 图片：直角、无投影（覆盖 reading.css 的圆角+阴影） */
+html[data-ef="endfield"] .post-content img {
+    border-radius: 0;
+}
+
+html[data-ef="endfield"] .post-content figure img {
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
+    transition: none;
+}
+
+html[data-ef="endfield"] .post-content figure img:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+html[data-ef="endfield"] .post-content figcaption {
+    font-style: normal;
+    font-family: var(--ef-font-ui);
+    font-size: 0.8125rem;
+    font-stretch: var(--ef-wide);
+    color: var(--ef-ink-2);
+}
+
+html[data-ef="endfield"] .post-content hr {
+    border: 0;
+    height: 1px;
+    background: var(--ef-rule);
+}
+
+html[data-ef="endfield"] mark {
+    background: color-mix(in srgb, var(--ef-signal) 55%, transparent);
+    color: inherit;
+}
+
+html[data-ef="endfield"] :is(ul, ol) li::marker {
+    color: var(--ef-ink-2);
+}
+
+/* 表格：细线 + 墨框 */
+html[data-ef="endfield"] .md-content table {
+    border: 1px solid var(--ef-ink);
+}
+
+html[data-ef="endfield"] .md-content table th,
+html[data-ef="endfield"] .md-content table td {
+    border: 1px solid var(--ef-rule);
+}
+
+html[data-ef="endfield"] .md-content table th {
+    background: var(--ef-chip);
+    font-family: var(--ef-font-ui);
+    font-weight: 700;
+}
+
+/* 标签：切角小块 */
+html[data-ef="endfield"] .post-tags a {
+    border-radius: 0;
+    border: 0;
+    background: linear-gradient(-45deg, transparent calc(var(--ef-cut) - 0.5px), var(--ef-chip) var(--ef-cut));
+    color: var(--ef-ink);
+    font-family: var(--ef-font-ui);
+    font-size: 0.8125rem;
+    font-stretch: var(--ef-wide);
+    line-height: 2;
+    padding: 0 calc(0.8rem + var(--ef-cut)) 0 0.8rem;
+    transition: filter 0.12s, color 0.12s;
+}
+
+html[data-ef="endfield"] .post-tags a:hover {
+    background: linear-gradient(-45deg, transparent calc(var(--ef-cut) - 0.5px), var(--ef-signal) var(--ef-cut));
+    color: var(--ef-on-signal);
+}
+
+/* 上一篇/下一篇 */
+html[data-ef="endfield"] .paginav {
+    border-radius: 0;
+    background: transparent;
+    border: 0;
+    border-top: 1px solid var(--ef-rule);
+    border-bottom: 1px solid var(--ef-rule);
+}
+
+html[data-ef="endfield"] .paginav a {
+    border-radius: 0;
+    background: transparent;
+    transition: background-color 0.15s;
+}
+
+html[data-ef="endfield"] .paginav a:hover {
+    background: var(--ef-paper);
+}
+
+html[data-ef="endfield"] .paginav .title {
+    font-family: var(--ef-font-ui);
+    font-stretch: var(--ef-wider);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ef-ink-2);
+}
+
+html[data-ef="endfield"] .paginav a:hover span:not(.title) {
+    background: linear-gradient(var(--ef-signal), var(--ef-signal)) 0 88% / 100% 0.32em no-repeat;
+    text-decoration: none;
+}
+
+/* ---------- 9. 分页 / 归档 / 搜索 / 页脚 ---------- */
+html[data-ef="endfield"] .pagination a {
+    color: var(--ef-ink);
+    background: var(--ef-chip);
+    border-radius: 0;
+    font-family: var(--ef-font-ui);
+    font-weight: 600;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    padding: 0.55rem 1.15rem 0.55rem 0.85rem;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--ef-cut)), calc(100% - var(--ef-cut)) 100%, 0 100%);
+    transition: background-color 0.12s, color 0.12s;
+}
+
+html[data-ef="endfield"] .pagination a:hover {
+    background: var(--ef-signal);
+    color: var(--ef-on-signal);
+}
+
+html[data-ef="endfield"] .archive-year {
+    font-family: var(--ef-font-ui);
+    font-stretch: var(--ef-wider);
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+}
+
+html[data-ef="endfield"] .archive-entry-title {
+    width: fit-content;
+}
+
+html[data-ef="endfield"] .archive-entry-title:hover {
+    background: linear-gradient(var(--ef-signal), var(--ef-signal)) 0 88% / 100% 0.32em no-repeat;
+}
+
+html[data-ef="endfield"] .archive-meta {
+    font-family: var(--ef-font-ui);
+    font-size: 0.8125rem;
+    font-stretch: var(--ef-wide);
+    font-variant-numeric: tabular-nums;
+}
+
+/* 分类/标签/系列云：切角浅灰块，悬停变黄（PaperMod 默认灰底墨字对比度不足） */
+html[data-ef="endfield"] .terms-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+html[data-ef="endfield"] .terms-tags li {
+    margin: 0;
+}
+
+html[data-ef="endfield"] .terms-tags a {
+    display: inline-block;
+    background: linear-gradient(-45deg, transparent calc(var(--ef-cut) - 0.5px), var(--ef-chip) var(--ef-cut));
+    color: var(--ef-ink);
+    border: 0;
+    border-radius: 0;
+    font-family: var(--ef-font-ui);
+    font-size: 0.8125rem;
+    font-stretch: var(--ef-wide);
+    line-height: 2;
+    padding: 0 calc(0.8rem + var(--ef-cut)) 0 0.8rem;
+    transition: background 0.12s, color 0.12s;
+}
+
+html[data-ef="endfield"] .terms-tags a:hover {
+    background: linear-gradient(-45deg, transparent calc(var(--ef-cut) - 0.5px), var(--ef-signal) var(--ef-cut));
+    color: var(--ef-on-signal);
+}
+
+html[data-ef="endfield"] .terms-tags sup {
+    color: var(--ef-ink-2);
+    font-variant-numeric: tabular-nums;
+}
+
+html[data-ef="endfield"] .terms-tags a:hover sup {
+    color: var(--ef-on-signal);
+}
+
+html[data-ef="endfield"] .searchbox input {
+    background: var(--ef-panel);
+    border: 1px solid var(--ef-ink);
+    border-radius: 0;
+    color: var(--ef-ink);
+    font-family: var(--ef-font-ui);
+}
+
+html[data-ef="endfield"] .searchResults li {
+    border-radius: 0;
+    border-bottom: 1px solid var(--ef-rule);
+}
+
+html[data-ef="endfield"] .footer {
+    border-top: 1px solid var(--ef-rule);
+    font-family: var(--ef-font-ui);
+    font-size: 0.8125rem;
+    font-variant-numeric: tabular-nums;
+}
+
+html[data-ef="endfield"] .footer a:hover {
+    background: linear-gradient(var(--ef-signal), var(--ef-signal)) 0 88% / 100% 0.3em no-repeat;
+}
+
+html[data-ef="endfield"] .top-link {
+    border-radius: 0;
+    background: var(--ef-chip);
+    border: 1px solid var(--ef-ink);
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--ef-cut)), calc(100% - var(--ef-cut)) 100%, 0 100%);
+    transition: background-color 0.12s;
+}
+
+html[data-ef="endfield"] .top-link:hover {
+    background: var(--ef-signal);
+}
+
+/* ---------- 10. 动效：换页快门（仅终末地，且系统未要求减少动态效果） ---------- */
+@media (prefers-reduced-motion: no-preference) {
+    html[data-ef="endfield"]::view-transition-old(root) {
+        animation: none;
+    }
+
+    html[data-ef="endfield"]::view-transition-new(root) {
+        animation: ef-shutter 360ms var(--ef-mech) both;
+    }
+}
+
+@keyframes ef-shutter {
+    from {
+        clip-path: polygon(0 0, 0 0, -14% 100%, -14% 100%);
+    }
+
+    to {
+        clip-path: polygon(0 0, 114% 0, 100% 100%, -14% 100%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html[data-ef="endfield"] .post-entry::before,
+    html[data-ef="endfield"] .post-entry :is(.entry-content-wrapper, .entry-cover-wrapper) {
+        transition: none;
+    }
+}

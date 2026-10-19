@@ -25,6 +25,8 @@
             </div>
             {{- end }}
             <div class="entry-main home-info-text-content">
+                {{- /* 终末地模式专属：眉标 + 真实数据字段（原版模式下隐藏） */}}
+                <p class="ef-eyebrow slash ef-only">BLOG</p>
                 <header class="entry-header">
                     <h1>{{ .Title | markdownify }}</h1>
                 </header>
@@ -32,6 +34,14 @@
                     {{ $opts := dict "display" "block" }}
                     {{ .Content | $.Page.RenderString $opts }}
                 </div>
+                {{- $posts := where site.RegularPages "Type" "in" site.Params.mainSections }}
+                {{- with $posts }}
+                {{- $latest := index (last 1 (sort . "Date" "desc")) 0 }}
+                <p class="ef-field ef-only home-info-facts">
+                    <span>最近更新 {{ $latest.Date.Format "2006.01.02" }}</span>
+                    <span>{{ len . }} 篇文章</span>
+                </p>
+                {{- end }}
             </div>
         </div>
         <footer class="entry-footer">
