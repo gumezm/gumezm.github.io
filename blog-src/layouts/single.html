@@ -7,7 +7,12 @@
   <header class="post-header">
     {{ partial "breadcrumbs.html" . }}
     {{- /* 终末地模式专属：眉标（分区直译）+ 标题下的三色条，原版模式下隐藏 */}}
-    {{- if eq .Section "posts" }}<p class="ef-eyebrow slash ef-only">POSTS</p>{{ end }}
+    {{- $efEyebrow := cond (eq .Section "posts") "POSTS" "" }}
+    {{- if not $efEyebrow }}
+    {{- $efSingleEyebrows := dict "关于" "ABOUT" }}
+    {{- $efEyebrow = index $efSingleEyebrows .Title }}
+    {{- end }}
+    {{- with $efEyebrow }}<p class="ef-eyebrow slash ef-only">{{ . }}</p>{{ end }}
     <h1 class="post-title entry-hint-parent">
       {{ .Title }}
       {{- if .Draft }}
